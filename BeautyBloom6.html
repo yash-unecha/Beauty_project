@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyeshadow Collection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf5e6; /* The warm cream from your image */
+            margin: 0;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Grid for 10 items (will wrap naturally) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Card Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background: #fff;
+        }
+
+        /* Eyeshadow Swatch - Round like an actual pan */
+        .swatch {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid #fff;
+        }
+
+        /* Shimmer effect for specific shades */
+        .shimmer {
+            background-image: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+        }
+
+        .info {
+            flex-grow: 1;
+        }
+
+        .name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .finish {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        /* Button - Styled like your photo */
+        .add-btn {
+            background-color: #ba5d6a; /* Dusty rose color */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            width: 100%;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .add-btn:hover {
+            background-color: #a34e5a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>✨ 10 Glamour Eyeshadow Shades ✨</h1>
+
+    <div class="product-grid" id="eyeshadow-grid">
+        </div>
+
+    <script>
+        const shades = [
+            { name: "Champagne Toast", finish: "Shimmer", price: "$14.99", color: "#F3E5AB" },
+            { name: "Midnight Smoke", finish: "Matte", price: "$12.99", color: "#2F2F2F" },
+            { name: "Rose Quartz", finish: "Metallic", price: "$15.99", color: "#E5A9A9" },
+            { name: "Golden Hour", finish: "Shimmer", price: "$14.99", color: "#D4AF37" },
+            { name: "Terra Cotta", finish: "Matte", price: "$12.99", color: "#C04000" },
+            { name: "Copper Penny", finish: "Metallic", price: "$15.99", color: "#AD6F44" },
+            { name: "Velvet Plum", finish: "Satin", price: "$13.99", color: "#4E3451" },
+            { name: "Sage Garden", finish: "Matte", price: "$12.99", color: "#77815C" },
+            { name: "Deep Cocoa", finish: "Matte", price: "$12.99", color: "#3D2B1F" },
+            { name: "Frosted Lilac", finish: "Shimmer", price: "$14.99", color: "#D1B3C4" }
+        ];
+
+        const container = document.getElementById('eyeshadow-grid');
+
+        shades.forEach(shade => {
+            const isShimmer = shade.finish === "Shimmer" || shade.finish === "Metallic" ? "shimmer" : "";
+            container.innerHTML += `
+                <div class="card">
+                    <div class="swatch ${isShimmer}" style="background-color: ${shade.color}"></div>
+                    <div class="info">
+                        <p class="name">${shade.name}</p>
+                        <p class="finish">${shade.finish}</p>
+                        <p class="price">${shade.price}</p>
+                        <button class="add-btn">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyeliner Collection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf5e6; /* Matching your cream background */
+            margin: 0;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #2c2c2c;
+        }
+
+        /* Grid for 8 items */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Card Styling */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+
+        /* Eyeliner Swatch - Styled like a pencil tip/line */
+        .liner-swatch {
+            width: 15px;
+            height: 90px;
+            border-radius: 10px;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .info {
+            flex-grow: 1;
+        }
+
+        .name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .type {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        /* Pink Button from your screenshot */
+        .add-btn {
+            background-color: #ba5d6a; 
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+
+        .add-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>👁️ 8 Precision Eyeliner Shades 👁️</h1>
+
+    <div class="product-grid" id="liner-grid">
+        </div>
+
+    <script>
+        const liners = [
+            { name: "Midnight Black", type: "Liquid Waterproof", price: "$18.99", color: "#000000" },
+            { name: "Deep Espresso", type: "Gel Pencil", price: "$16.50", color: "#3B2F2F" },
+            { name: "Forest Moss", type: "Retractable", price: "$16.50", color: "#1B3022" },
+            { name: "Navy Pier", type: "Liquid Matte", price: "$18.99", color: "#000080" },
+            { name: "Plum Wine", type: "Gel Pencil", price: "$16.50", color: "#4E0733" },
+            { name: "Shimmer Slate", type: "Metallic", price: "$17.99", color: "#708090" },
+            { name: "Charcoal Grey", type: "Matte Pencil", price: "$15.00", color: "#333333" },
+            { name: "Cocoa Bean", type: "Smudge Proof", price: "$16.50", color: "#5C4033" }
+        ];
+
+        const container = document.getElementById('liner-grid');
+
+        liners.forEach(item => {
+            container.innerHTML += `
+                <div class="card">
+                    <div class="liner-swatch" style="background-color: ${item.color}"></div>
+                    <div class="info">
+                        <p class="name">${item.name}</p>
+                        <p class="type">${item.type}</p>
+                        <p class="price">${item.price}</p>
+                        <button class="add-btn">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>
