@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18 Shades of Lipstick - Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lipstick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .lipstick-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lipstick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .lipstick-swatch {
+            width: 100%;
+            height: 120px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .lipstick-swatch::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .lipstick-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .lipstick-info p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #e91e63, #f06292);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(45deg, #c2185b, #d81b60);
+            transform: scale(1.05);
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.98);
+        }
+
+        /* Cart Styles */
+        .cart-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-item-count {
+            background: #e91e63;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-item {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e91e63;
+            margin-top: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(45deg, #388e3c, #66bb6a);
+        }
+
+        @media (max-width: 768px) {
+            .lipstick-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌹 18 Premium Lipstick Shades 🌹</h1>
+        
+        <div class="lipstick-grid" id="lipstickGrid">
+            <!-- Lipstick shades will be populated by JavaScript -->
+        </div>
+
+        <div class="cart-modal" id="cartModal">
+        <div class="cart-container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">🛍️ Shopping Cart</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">$0.00</div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+            <button class="cart-btn" onclick="toggleCart()" style="width: 100%; background: #6c757d; color: white;">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const lipsticks = [
+            { id: 1, name: "Classic Red", shade: "#c41e3a", price: 24.99, type: "Matte" },
+            { id: 2, name: "Nude Pink", shade: "#d689a0", price: 22.99, type: "Creamy" },
+            { id: 3, name: "Deep Berry", shade: "#6a1b44", price: 26.99, type: "Matte" },
+            { id: 4, name: "Coral Bliss", shade: "#ff6f61", price: 23.99, type: "Glossy" },
+            { id: 5, name: "Rose Gold", shade: "#b5654d", price: 25.99, type: "Shimmer" },
+            { id: 6, name: "Plum Perfect", shade: "#4a154b", price: 24.99, type: "Matte" },
+            { id: 7, name: "Peach Dream", shade: "#ffadad", price: 21.99, type: "Creamy" },
+            { id: 8, name: "Mocha Latte", shade: "#8b4513", price: 23.99, type: "Matte" },
+            { id: 9, name: "Hot Pink", shade: "#ff1493", price: 24.99, type: "Glossy" },
+            { id: 10, name: "Soft Mauve", shade: "#a68ca7", price: 22.99, type: "Creamy" },
+            { id: 11, name: "Brick Red", shade: "#8b0000", price: 25.99, type: "Matte" },
+            { id: 12, name: "Cherry Pop", shade: "#9b1d64", price: 24.99, type: "Glossy" },
+            { id: 13, name: "Apricot Glow", shade: "#f4a261", price: 23.99, type: "Shimmer" },
+            { id: 14, name: "Wine Red", shade: "#722f37", price: 26.99, type: "Matte" },
+            { id: 15, name: "Ballet Pink", shade: "#ffc1cc", price: 21.99, type: "Creamy" },
+            { id: 16, name: "Coffee Brown", shade: "#4a2c2a", price: 24.99, type: "Matte" },
+            { id: 17, name: "Fuchsia Fever", shade: "#c71585", price: 25.99, type: "Glossy" },
+            { id: 18, name: "Taupe Beauty", shade: "#8b7d6b", price: 23.99, type: "Shimmer" }
+        ];
+
+        let cart = [];
+
+        // Render lipsticks
+        function renderLipsticks() {
+            const grid = document.getElementById('lipstickGrid');
+            grid.innerHTML = '';
+
+            lipsticks.forEach(lipstick => {
+                const card = document.createElement('div');
+                card.className = 'lipstick-card';
+                card.innerHTML = `
+                    <div class="lipstick-swatch" style="background: ${lipstick.shade};"></div>
+                    <div class="lipstick-info">
+                        <h3>${lipstick.name}</h3>
+                        <p>${lipstick.type} Finish</p>
+                        <div class="price">$${lipstick.price.toFixed(2)}</div>
+                        <button class="add-to-cart" onclick="addToCart(${lipstick.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(lipstickId) {
+            const lipstick = lipsticks.find(l => l.id === lipstickId);
+            const existingItem = cart.find(item => item.id === lipstickId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...lipstick, quantity: 1 });
+            }
+
+            updateCartDisplay();
+            showNotification(`Added ${lipstick.name} to cart!`);
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartSection = document.getElementById('cartSection');
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (cart.length > 0) {
+                cartSection.style.display = 'block';
+                cartCount.textContent = `${cart.reduce((sum, item) => sum + item.quantity, 0)} items`;
+                
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>$${item.price.toFixed(2)} x ${item.quantity}</small>
+                        </div>
+                        <div>
+                            <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            } else {
+                cartSection.style.display = 'none';
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(lipstickId) {
+            cart = cart.filter(item => item.id !== lipstickId);
+            updateCartDisplay();
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert(`Thank you for your purchase! Total: $${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}\n\nProceeding to payment...`);
+            cart = [];
+            updateCartDisplay();
+        }
+
+        // Notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4caf50;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: bold;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Initialize
+        renderLipsticks();
+    </script>
+</body>
+</html>

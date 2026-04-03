@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipgloss Collection</title>
+    <style>
+        :root {
+            --bg-color: #fdf6f0; /* Soft cream background */
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --accent-pink: #e91e63; /* Button color */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Grid container for the 6 shades */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual Product Card */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Color Swatch */
+        .swatch {
+            width: 80px;
+            height: 120px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        /* Details Section */
+        .details {
+            flex-grow: 1;
+        }
+
+        .shade-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .finish {
+            color: #777;
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 8px 0;
+        }
+
+        /* Button Styling */
+        .btn-add {
+            background-color: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .btn-add:hover {
+            background-color: #c2185b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>💄 6 Premium Lipgloss Shades 💄</h1>
+    </div>
+
+    <div class="grid-container">
+        
+        <!-- Repeat this block for each of your 15 shades -->
+        <div class="product-card">
+            <!-- Replace hex code with your shade colors -->
+            <div class="swatch" style="background-color: #D32F2F;"></div>
+            <div class="details">
+                <p class="shade-name">Classic Red</p>
+                <p class="finish">Matte Finish</p>
+                <p class="price">$24.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="swatch" style="background-color: #F06292;"></div>
+            <div class="details">
+                <p class="shade-name">Nude Pink</p>
+                <p class="finish">Creamy Finish</p>
+                <p class="price">$22.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+<div class="product-card">
+            <div class="swatch" style="background-color: #b5654d;"></div>
+            <div class="details">
+                <p class="shade-name">Rose Gold</p>
+                <p class="finish">Shimmer</p>
+                <p class="price">$25.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+<div class="product-card">
+            <div class="swatch" style="background-color: #8b4513;"></div>
+            <div class="details">
+                <p class="shade-name">Mocha Latte</p>
+                <p class="finish">Matte</p>
+                <p class="price">$21.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+<div class="product-card">
+            <div class="swatch" style="background-color: #ffadad;"></div>
+            <div class="details">
+                <p class="shade-name">Peach Dream</p>
+                <p class="finish">Creamy</p>
+                <p class="price">$26.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+<div class="product-card">
+            <div class="swatch" style="background-color: #9b1d64;"></div>
+            <div class="details">
+                <p class="shade-name">Cherry Pop</p>
+                <p class="finish">Glossy</p>
+                <p class="price">$21.99</p>
+                <button class="btn-add">Add to Cart</button>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- Add 13 more blocks like the one above -->
+
+    </div>
+
+</body>
+</html
